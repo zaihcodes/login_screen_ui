@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:login_screen_ui/core/utils/widgets/custom_form_button.dart';
+import 'package:login_screen_ui/core/utils/widgets/custom_text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.surface,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -16,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 60),
               const Text(
                 "Lets Register Account",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               const Text(
@@ -24,51 +27,39 @@ class SignUpScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 40),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Name',
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              CustomTextField(
+                  text: 'Name',
+                  icon: Icons.person,
+                  func: (value) {
+                    debugPrint('Name: $value');
+                  }),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Business name',
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              CustomTextField(
+                  text: 'Last name',
+                  icon: Icons.person,
+                  func: (value) {
+                    debugPrint('Last name: $value');
+                  }),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Phone',
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              CustomTextField(
+                  text: 'Email',
+                  icon: Icons.email,
+                  func: (value) {
+                    debugPrint('Email: $value');
+                  }),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                  ),
-                  child: const Text('Sign Up'),
-                ),
+              CustomTextField(
+                  text: 'Password',
+                  icon: Icons.lock,
+                  func: (value) {
+                    debugPrint('Password: $value');
+                  }),
+              const SizedBox(height: 50),
+              CustomFormButton(
+                text: 'Sign up',
+                func: () {
+                  debugPrint('Sign up');
+                },
               ),
               const SizedBox(height: 20),
               Center(
