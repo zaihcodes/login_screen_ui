@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_screen_ui/core/utils/widgets/custom_form_button.dart';
 import 'package:login_screen_ui/core/utils/widgets/custom_text_field.dart';
 import 'sign_up_screen.dart';
 
@@ -6,14 +7,12 @@ class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   final IconData icon = Icons.password;
-  void _onchange(query) {
-    debugPrint(query);
-  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.surface,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -23,16 +22,17 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 60),
               const Text(
                 "Lets Sign you in",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               const Text(
                 "Welcome Back,\nYou have been missed",
                 style: TextStyle(fontSize: 18),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 50),
               CustomTextField(
                   text: 'Email',
+                  hintText: 'Enter your email',
                   icon: Icons.email,
                   func: (value) {
                     debugPrint('Value: $value');
@@ -41,6 +41,7 @@ class SignInScreen extends StatelessWidget {
               CustomTextField(
                   text: 'Password',
                   type: 'password',
+                  hintText: 'Enter your password',
                   icon: Icons.lock,
                   func: (value) {
                     debugPrint('Value: $value');
@@ -53,35 +54,39 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                  ),
-                  child: const Text('Sign in'),
-                ),
+              CustomFormButton(
+                text: 'Sign in',
+                func: () {
+                  debugPrint('Sign in');
+                },
               ),
               const SizedBox(height: 20),
               const Center(
-                child: Text('or'),
+                child: Text(
+                  'or',
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
               const SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.g_translate),
-                    onPressed: () {},
+                  GestureDetector(
+                    onTap: () {},
+                    child: Image.asset(
+                      'assets/icons/google.png',
+                      width: 45,
+                    ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.facebook),
-                    onPressed: () {},
+                  const SizedBox(
+                    width: 20,
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.apple),
-                    onPressed: () {},
+                  GestureDetector(
+                    onTap: () {},
+                    child: Image.asset(
+                      'assets/icons/facebook.png',
+                      width: 45,
+                    ),
                   ),
                 ],
               ),

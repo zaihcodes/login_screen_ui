@@ -16,15 +16,36 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: func,
-      decoration: InputDecoration(
-        labelText: text,
-        hintText: hintText,
-        prefixIcon: Icon(icon),
-        border: const OutlineInputBorder(),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(
+                width: 1, color: Theme.of(context).colorScheme.primary)),
+        // Border.all(width: 1, color: Theme.of(context).colorScheme.primary),
+        // borderRadius: BorderRadius.circular(15),
       ),
-      obscureText: type == 'password' ? true : false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+                fontSize: 16, color: Theme.of(context).colorScheme.primary),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          TextFormField(
+            onChanged: func,
+            decoration: InputDecoration(
+              hintText: hintText,
+              prefixIcon: Icon(icon),
+              border: InputBorder.none,
+            ),
+            obscureText: type == 'password' ? true : false,
+          ),
+        ],
+      ),
     );
   }
 }
