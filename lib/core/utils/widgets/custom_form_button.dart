@@ -24,7 +24,7 @@ class CustomFormButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: theme.colorScheme.onPrimary, fontSize: 18),
+            style: TextStyle(color: theme.colorScheme.onPrimary),
           ),
         ),
       ),
