@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login_screen_ui/core/theme/theme_provider.dart';
 import 'package:login_screen_ui/core/utils/widgets/custom_form_button.dart';
 import 'package:login_screen_ui/core/utils/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 import 'sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -15,13 +17,28 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: theme.colorScheme.surface,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 60),
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () {
+                    Provider.of<ThemeNotifier>(context, listen: false)
+                        .toggleTheme();
+                  },
+                  child: Icon(
+                    Provider.of<ThemeNotifier>(context, listen: false)
+                            .isLightTheme
+                        ? Icons.light_mode
+                        : Icons.dark_mode,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
               const Text(
-                "Lets Sign you in",
+                "Sign in",
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
@@ -46,21 +63,18 @@ class SignInScreen extends StatelessWidget {
                   func: (value) {
                     debugPrint('Value: $value');
                   }),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text('Forgot Password?'),
-                ),
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 25),
               CustomFormButton(
                 text: 'Sign in',
                 func: () {
                   debugPrint('Sign in');
                 },
               ),
-              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Forgot Password?'),
+              ),
+              const SizedBox(height: 0),
               const Center(
                 child: Text(
                   'or',
@@ -71,22 +85,16 @@ class SignInScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      'assets/icons/google.png',
-                      width: 45,
-                    ),
+                  thirdPartyLogin(
+                    func: () {},
+                    image: 'assets/icons/google.png',
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      'assets/icons/facebook.png',
-                      width: 45,
-                    ),
+                  thirdPartyLogin(
+                    func: () {},
+                    image: 'assets/icons/facebook.png',
                   ),
                 ],
               ),
@@ -106,6 +114,16 @@ class SignInScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget thirdPartyLogin({required String image, required VoidCallback func}) {
+    return GestureDetector(
+      onTap: func,
+      child: Image.asset(
+        image,
+        width: 40,
       ),
     );
   }

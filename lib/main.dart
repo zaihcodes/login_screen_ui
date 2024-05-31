@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:login_screen_ui/core/app_theme.dart';
+import 'package:login_screen_ui/core/theme/app_theme.dart';
+import 'package:login_screen_ui/core/theme/theme_provider.dart';
 import 'package:login_screen_ui/presentation/screens/sign_in_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,18 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   useMaterial3: true,
-      //   fontFamily: 'Roboto',
-      //   colorScheme: ColorScheme.fromSeed(
-      //     seedColor: const Color(0xDA12E547),
-      //     // brightness: Brightness.dark,
-      //   ),
-      // ),
-      theme: AppTheme.light(),
-      home: const SignInScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => ThemeNotifier(),
+      child: Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: themeNotifier.isLightTheme
+              ? AppTheme.light()
+              : AppTheme.darkScheme(),
+          home: const SignInScreen(),
+        );
+      }),
     );
   }
 }
