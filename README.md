@@ -4,10 +4,10 @@
 This is a simple authentication app built with Flutter. The app includes a login screen and a registration screen.
 
 ## Screenshots
-<img src="./screenshots/Screenshot_s1.png" height="500em" />
+<img src="./screenshots/Screenshot_s1.png" height="500em" />    <img src="./screenshots/Screenshot_s3.png" height="500em" />
 
 ### Login Screen
-<img src="./screenshots/Screenshot_s2.png" height="500em" />
+<img src="./screenshots/Screenshot_s2.png" height="500em" />    <img src="./screenshots/Screenshot_s4.png" height="500em" />
 
 
 ### Registration Screen
